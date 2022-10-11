@@ -1,11 +1,13 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
+import 'materialize-css/dist/css/materialize.min.css'
+import ReactDom from "react-dom";
+import { Provider } from "react-redux";
+import { store } from './store'
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
+import App from "./components/App";
+
+ReactDom.render(
+  <Provider store={store}>
     <App />
-  </React.StrictMode>
+  </Provider>,
+  document.querySelector("#root")
 );
-

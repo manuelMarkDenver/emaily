@@ -9,22 +9,22 @@ const SurveyNew = () => <h2>SurveyNew</h2>;
 const Landing = () => <h2>Landing</h2>;
 
 const App = () => {
-  const [user, setUser] = useState({})
   const dispatch = useDispatch();
 
-  
   const fetchedUser = useSelector((state) => state.userSlice.user);
-  console.log("🚀 ~ file: App.js ~ line 17 ~ App ~ fetchedUser", fetchedUser)
+  const isLoading = useSelector((state) => state.userSlice.loading);
+
+  console.log("🚀 ~ file: App.js ~ line 16 ~ App ~ isLoading", isLoading)
   
   useEffect(() => {
     getCurrentUser(dispatch);
-  }, [user, dispatch]);
+  }, [dispatch]);
 
   return (
     <div className="container">
       <BrowserRouter>
         <div>
-          <Header />
+          <Header user={fetchedUser} isLoading={isLoading} />
           <Route path="/" exact component={Landing} />
           <Route path="/surveys" exact component={Dashboard} />
           <Route path="/surveys/new" component={SurveyNew} />

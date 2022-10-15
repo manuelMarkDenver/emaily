@@ -16,10 +16,22 @@ const authSlice = createSlice({
         ...state,
         user: action.payload
       }
-    }
+    },
+    showLoading(state) {
+      return {
+        ...state,
+        loading: true
+      }
+    },
+    hideLoading(state) {
+      return {
+        ...state,
+        loading: false
+      }
+    },
   },
 })
 
-export const { getUser } = authSlice.actions
+export const { getUser, showLoading, hideLoading } = authSlice.actions
 
 export default authSlice.reducer

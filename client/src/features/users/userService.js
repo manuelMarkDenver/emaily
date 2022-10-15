@@ -1,11 +1,12 @@
 import axios from 'axios';
-import { getUser } from './userSlice';
+import { getUser, showLoading, hideLoading } from './userSlice';
 
 export const getCurrentUser = async (dispatcher) => {
   try {
     const response = await axios.get('/api/current_user');
-    console.log("🚀 ~ file: userService.js ~ line 7 ~ getCurrentUser ~ response ", response )
+    dispatcher(showLoading)
     dispatcher(getUser(response.data))
+    dispatcher(hideLoading)
     return response
   } catch (error) {
     console.error(error)
